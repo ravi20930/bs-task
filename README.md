@@ -1,4 +1,3 @@
-````markdown
 # BiteSpeed Web Service
 
 ## Installation
@@ -8,7 +7,6 @@ To install the dependencies, run:
 ```bash
 yarn install
 ```
-````
 
 ## Build
 

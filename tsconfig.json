@@ -15,15 +15,12 @@
       "isolatedModules": true,
       "incremental": true,
       "baseUrl": ".",
-      "plugins": [
-        {
-          "name": "next"
-        }
-      ]
     },
     "include": [
-      "src/**/*",
-    ],
+        "src/**/*",
+        "*.ts"
+      ],
+      
     "exclude": ["node_modules", "dist"]
   }
   

@@ -70,7 +70,6 @@ export const identifyContactByEmailOrPhone = async (
       linkPrecedence: "primary",
     });
 
-    // Return the newly created primary contact with an empty array for secondary contacts
     return {
       primaryContactId: newPrimaryContact.id,
       emails: [email],
@@ -79,7 +78,6 @@ export const identifyContactByEmailOrPhone = async (
     };
   }
 
-  // Find all secondary contacts linked to the primary contact
   const secondaryContacts = await Contact.findAll({
     where: {
       linkedId: primaryContact.id,
@@ -87,11 +85,16 @@ export const identifyContactByEmailOrPhone = async (
     },
   });
 
-  // Construct the response payload
-  const uniqueEmails = new Set([
-    primaryContact.email,
-    ...secondaryContacts.map((contact) => contact.email),
-  ]);
+  let allEmailsSet = new Set<string>();
+  if (primaryContact && primaryContact.email) {
+    allEmailsSet.add(primaryContact.email);
+  }
+  secondaryContacts.forEach((contact) => {
+    if (contact.email) {
+      allEmailsSet.add(contact.email);
+    }
+  });
+
   const uniquePhoneNumbers = new Set([
     primaryContact.phoneNumber,
     ...secondaryContacts.map((contact) => contact.phoneNumber),
@@ -99,10 +102,49 @@ export const identifyContactByEmailOrPhone = async (
 
   const responsePayload = {
     primaryContactId: primaryContact.id,
-    emails: Array.from(uniqueEmails),
+    emails: Array.from(allEmailsSet),
     phoneNumbers: Array.from(uniquePhoneNumbers),
     secondaryContactIds: secondaryContacts.map((contact) => contact.id),
   };
 
   return responsePayload;
+};
+
+export const insertContact = async (
+  email: string | null,
+  phoneNumber: string | null
+) => {
+  let whereCondition: any = {};
+  if (email && phoneNumber) {
+    whereCondition = {
+      [Op.or]: [{ email }, { phoneNumber }],
+    };
+  } else if (email) {
+    whereCondition.email = email;
+  } else if (phoneNumber) {
+    whereCondition.phoneNumber = phoneNumber;
+  }
+
+  const existingContact = await Contact.findOne({
+    where: whereCondition,
+  });
+
+  if (existingContact) {
+    const newContact = await Contact.create({
+      email,
+      phoneNumber,
+      linkedId: existingContact.id,
+      linkPrecedence: "secondary",
+    });
+
+    return newContact;
+  }
+
+  const newContact = await Contact.create({
+    email,
+    phoneNumber,
+    linkPrecedence: "primary",
+  });
+
+  return newContact;
 };

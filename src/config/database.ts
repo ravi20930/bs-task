@@ -18,6 +18,7 @@ export const sequelize = new Sequelize(
   {
     host: DB_HOST!,
     dialect: DB_CONNECTION as Dialect,
+    dialectModule: require("pg"),
     define: {
       freezeTableName: false,
     },

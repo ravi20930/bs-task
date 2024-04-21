@@ -102,6 +102,7 @@ DB_PASSWORD=
 ## Hosted Endpoints
 
 ```
+http://13.233.165.252:5656/ (hit check!)
 http://13.233.165.252:5656/api/identify
 http://13.233.165.252:5656/api/new
 ```

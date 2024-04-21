@@ -9,6 +9,7 @@ import morgan from "morgan";
 import { exceptionHandler } from "./src/utils/handler";
 import { connectDb } from "./src/config/database";
 import router from "./src/routes";
+import { seedContacts } from "./src/services/user";
 
 const app = express();
 const { EXPRESS_PORT, DB_SYNC_FLAG, NODE_ENV } = process.env;
@@ -25,6 +26,7 @@ app.use(exceptionHandler);
 
 app.listen(EXPRESS_PORT, async () => {
   await connectDb(shouldSync); // pass "true" to alter tables
+  //   await seedContacts();
   console.info(
     "🚀 Express server started at port %d in %s mode. Time: %s",
     EXPRESS_PORT,

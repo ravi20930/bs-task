@@ -6,7 +6,7 @@ interface ContactAttributes {
   phoneNumber?: string | null;
   email: string;
   linkedId?: string | null;
-  linkPrecedence: "primary" | "secondary";
+  linkPrecedence: string | null;
 }
 
 class Contact extends Model<ContactAttributes> implements ContactAttributes {

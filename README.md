@@ -45,7 +45,7 @@ DB_PASSWORD=
 
 ## Endpoints
 
-### `/new`
+### `/api/new`
 
 **Method:** POST
 
@@ -69,7 +69,7 @@ DB_PASSWORD=
 }
 ```
 
-### `/identify`
+### `/api/identify`
 
 **Method:** POST
 
@@ -97,4 +97,11 @@ DB_PASSWORD=
     "b6997684-0f1d-4665-8ae5-998a67785ac7"
   ]
 }
+```
+
+## Hosted Endpoints
+
+```
+http://13.233.165.252:5656/api/identify
+http://13.233.165.252:5656/api/new
 ```

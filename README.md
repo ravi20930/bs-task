@@ -1,14 +1,14 @@
+````markdown
 # BiteSpeed Web Service
 
 ## Installation
 
 To install the dependencies, run:
 
-## Install
-
-````bash
+```bash
 yarn install
 ```
+````
 
 ## Build
 
@@ -104,4 +104,3 @@ DB_PASSWORD=
 ```
 
 ```
-````

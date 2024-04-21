@@ -1,14 +1,12 @@
-````markdown
 # BiteSpeed Web Service
 
 ## Installation
 
 To install the dependencies, run:
 
-```bash
+````bash
 yarn install
-```
-````
+
 
 ## Build
 
@@ -16,7 +14,7 @@ To build the project, run:
 
 ```bash
 yarn build
-```
+````
 
 ## Start
 
@@ -100,10 +98,6 @@ DB_PASSWORD=
   ]
 }
 ```
-
-## Author
-
-[Ravi Shankar]
 
 ```
 

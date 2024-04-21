@@ -4,7 +4,7 @@ import { sequelize } from "../config/database";
 interface ContactAttributes {
   id?: string;
   phoneNumber?: string | null;
-  email: string;
+  email?: string | null;
   linkedId?: string | null;
   linkPrecedence: string | null;
 }
@@ -34,7 +34,7 @@ Contact.init(
     },
     email: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      allowNull: true,
     },
     linkedId: {
       type: DataTypes.UUID,

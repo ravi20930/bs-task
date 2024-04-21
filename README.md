@@ -4,9 +4,11 @@
 
 To install the dependencies, run:
 
+## Install
+
 ````bash
 yarn install
-
+```
 
 ## Build
 
@@ -14,7 +16,7 @@ To build the project, run:
 
 ```bash
 yarn build
-````
+```
 
 ## Start
 
@@ -102,3 +104,4 @@ DB_PASSWORD=
 ```
 
 ```
+````

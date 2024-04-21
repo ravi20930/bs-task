@@ -22,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
+app.get("/", (req, res) => res.status(200).json({ message: "hit check!" }));
 app.use(exceptionHandler);
 
 app.listen(EXPRESS_PORT, async () => {
